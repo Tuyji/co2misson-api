@@ -1,0 +1,44 @@
+Application
+	Website
+		CreateApplication
+	Admin
+		UpdateApplication
+			status -> Approved -> CreateAffliate
+
+Affliate
+	Admin
+		GetAllAffliates
+		GetAffliatesPagedSorted -> Name,Surname,CreatedAt
+		GetAffliate
+	UserAdmin
+		GetAffliate
+		ResetPassword => Request,Verification,UpdatePassword
+		GetAffliateStatus -> ay içindeki transactionlarin toplami hangi saklaya giriyor(mesaj geldiği anda, redise yazılacak)
+Transaction
+	Admin
+	UserAdmin
+		GetAffliateTransactionsPagedSorted, Sort Tarih, Filter Tarih ve TransactionSource
+Payout					
+	GetChannelPayoutTransactionsPaged
+	GetChannelPayoutTransactions				
+Platform
+	GetAllPlatforms
+	
+UsefulMaterials
+	Admin
+		CreateUsefulMaterial -> Video veya Imaj olduğu zaman binary data gelecek, material tipine gore yazılacağı dizine karar verilecek
+	UserAdmin
+		bakilacak
+Projeler
+	?		
+		
+		
+API Cache local redis configurasyonu (Tuyji)
+POC Makinasina Redis PUBSUB kurulum, api subscriber yazilacak , mesajlar okunup PaymentTransaction tablosuna yazilacak. (Tuyji)
+Authentication API yazilacak. Co2mission API spring security eklenecek. (Dogus)
+Notification API yazilacak. Co2mission API publisher olacak, notification api subscriber olacak,notification servisi transaction publish edecek (Dogus)
+Analytics Specler netleşecek, google API baglantisi yapilacak. (Dogus,Tuyji)
+Payout uygulamasi yazilacak. (Dogus)
+ExchangeRate API'i entegre edilecek.(Dogus)
+
+					

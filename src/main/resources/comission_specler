@@ -1,0 +1,136 @@
+GetAffilate /{affiliateId} 
+	Name 
+	Surname
+	isActive
+	notifications
+		
+
+/*
+AccessBasedRestriction
+
+VerificationStatus her servisin responseunda optional, eğer alan doluysa -> IN_PROGRESS modal, INCOMPLETE incomplete modal-> redirect to personal information
+Payment status, odeme esnasında hata alindiginda bize notification gelecek, admin ekranına düşecek->NOT_VALID modal-> redirect to personal information
+Hangi Currencyler olacak? Transaction Anindaki Kura gore statü vs. olacak. Odemeler dolar olarak çıkacak?
+AddNewLinks?
+*/
+
+DashBoard
+	GetUserEarnings /{affiliateId}
+		Total ---> Redis
+		LastMonth --->Redis
+
+	GetUserStatus
+		Status ---> Redis
+		ThisMonthTotalSales --->Redis
+		ThisMonthMyEarning ---> Redis
+		
+		My Status Nasıl Bir Gösterim? Eligible for payment?
+
+	GetAnalyticsSummary /{affiliateId}
+		totalClicks --> Redis , clientlardan co2nsensusApi'a, oradan pubsuba?
+		revenue
+	TransactionHistorySummary -> Last 10 transactions
+		UserName
+		Date
+		Amount
+		PricePaid
+			
+	
+	News & Updates? 
+
+
+	
+
+
+Information
+	GetPersonalInfo /{affiliateId}
+	UpdatePersonalInfo/ {affiliateId} , bir kere verified olduktan sonra bu alanlar olacak mı?
+		Req:
+			Name
+			Surname
+			Birthday
+			Country
+			E-mail
+			Address
+	UpdateIdVerification /{affiliateId} //Geçilecek
+		binary
+	
+	GetPlatformInformation/ {affiliateId}
+		AffiliatePlatforms
+		
+		
+	AddPlatformInformation/ {affiliateId}
+		req:
+			platformType -> instagram, facebook,youtube, ?
+			followers
+			posts?
+	AddPaymentInformation/ {affiliateId} popup form?
+		req: paymentType : PAYPAL
+			 accountInfo : email
+TransactionHistory
+	GetTransactionAnalytics
+		Request:
+			FromDate
+			ToDate
+			Source(optional) -> instagram story, youtube vs.
+		Resp:
+			TotalClicks: PUBSUB ya da GAPI
+			Min Sales -> Redis
+			MaxSales -> Redis
+			Average Sales-> Date olmadığında Redis
+			OffsetNumber-> Date olmadığında Redis
+			OffsetCo2->Date olmadığında Redis
+			TotalSales->Date olmadığında Redis
+			Earning-> Date olmadığında Redis ? Statusu neye göre?
+	GetTransactionHistory /{affiliateId}
+		Req
+			source(optional)
+		Name
+		Date
+		Purchase
+		Source
+	GetRefundedTransactions?
+
+MySubscribers
+	GetSubscriberInfo
+		TotalSubscribers -> PUBSUB'dan subscripton başladığı zaman gelecek
+		CancelledSubscribers-> PUBSUB'dan subscripton iptal olduğu zaman gelecek
+		MonthlyRevenue-> subscribers * subscriptionType?
+		RevenuePerSubscriber-> REDIS
+		MonthlyOffsets-> subscribers * subscriptionType?
+		MonthlyOffsets-> subscribers * subscriptionType?
+		TotalOffsetAmount-> REDIS, PUBSUB,previous orders of type subscription
+		TotalTreesPlanted->REDIS, PUBSUB,previous orders of type subscription / tree per offset
+		TotalRevenueGenerated-> REDIS, PUBSUB'dan geldiğinde
+		TotalEarnings-> ?
+	GetAffilateSources
+		Platform Table'ı değerleri + AffiliateSources değerleri
+MyEarnings
+	Period ay içindeki mi, earning neye gore?
+	GetUserStatus
+		Status ---> Redis
+		ThisMonthTotalSales --->Redis
+		ThisMonthMyEarning ---> Redis
+		
+		My Status Nasıl Bir Gösterim? Eligible for payment?
+	GetUserEarningsByYear /{affliateId}
+		req
+			year
+		response
+			month
+			totalSales -> REDIS, payout
+UsefulMaterials //geçilecek
+	Images
+		GetImagePreview
+		DownloadImage
+			imageType -> Enums?
+		Borders?
+		Banners?
+ReferralLinks
+	CreateAffiliateSource
+	
+Analytics
+
+Widgets
+	Preset nedir?
+	Üç şey kopyalanacak, css,js,
